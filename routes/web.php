@@ -12,13 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); //retorna view inicial
 });
 
+//rotas de autenticação
 Auth::routes();
 
 /*
-Rotas do painel
+Rotas do painel com middleware de controle de autenticação
 */
 Route::group(['middleware' => ['auth'], 'prefix' => 'painel'], function ($router) {
 	
@@ -27,17 +28,44 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'painel'], function ($router
 	*/
 	$router->group(['prefix' => 'vendas'], function ($router) {
 		$router->get('/', 'Painel\VendasController@index')->name('vendas');
-		$router->get('get-produto-ajax', 'Painel\VendasController@getProdutoByNomeAjax');
+		$router->get('get-produto-ajax', 'Painel\VendasController@getProdutoByNomeAjax'); //rota de busca de produtos ajax
 	});
 	
 	/*
 	Rotas do crud produtos
 	*/
-	$router->resource('produtos', 'Painel\ProdutosController');
+	$router->group(['prefix' => 'produtos'], function ($router) {
+		$router->get('/', 'Painel\ProdutosController@index');
+		$router->get('/create', 'Painel\ProdutosController@create');
+		$router->post('/', 'Painel\ProdutosController@store');
+		$router->get('/{id}', 'Painel\ProdutosController@show');
+		$router->get('/{id}/edit', 'Painel\ProdutosController@edit');
+		$router->patch('/{id}', 'Painel\ProdutosController@update');
+		$router->delete('/{id}', 'Painel\ProdutosController@destroy');
+		/*
+		OU SUBSTITUIR ROTAS ACIMA POR
+		$router->resource('produtos', 'Painel\ProdutosController');
+		*/
+	});
+	
+	
 	
 	/*
 	Rotas do crud tipos de produtos
 	*/
-	$router->resource('produtos-tipos', 'Painel\ProdutosTiposController');
+	$router->group(['prefix' => 'produtos-tipos'], function ($router) {
+		$router->get('/', 'Painel\ProdutosTiposController@index');
+		$router->get('/create', 'Painel\ProdutosTiposController@create');
+		$router->post('/', 'Painel\ProdutosTiposController@store');
+		$router->get('/{id}', 'Painel\ProdutosTiposController@show');
+		$router->get('/{id}/edit', 'Painel\ProdutosTiposController@edit');
+		$router->patch('/{id}', 'Painel\ProdutosTiposController@update');
+		$router->delete('/{id}', 'Painel\ProdutosTiposController@destroy');
+		/*
+		OU SUBSTITUIR ROTAS ACIMA POR
+		$router->resource('produtos-tipos', 'Painel\ProdutosTiposController');
+		*/
+	});
+	
 
 });
