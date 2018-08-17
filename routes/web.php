@@ -17,32 +17,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 /*
 Rotas do painel
 */
 Route::group(['middleware' => ['auth'], 'prefix' => 'painel'], function ($router) {
 	
 	/*
-	Rotas de vendas
+	Rota de vendas
 	*/
-	Route::group(['middleware' => ['auth'], 'prefix' => 'vendas'], function ($router) {
-		$router->get('/', 'HomeController@index')->name('vendas');
+	$router->group(['prefix' => 'vendas'], function ($router) {
+		$router->get('/', 'Painel\VendasController@index')->name('vendas');
 	});
 	
 	/*
-	Rotas de cadastro de produtos
+	Rotas do crud produtos
 	*/
-	Route::group(['middleware' => ['auth'], 'prefix' => 'cadastrar-produto'], function ($router) {
-		$router->get('/', 'HomeController@index')->name('cadastrar-produto');
-	});
+	$router->resource('produtos', 'Painel\ProdutosController');
 	
 	/*
-	Rotas de cadastro de tipos de produtos
+	Rotas do crud tipos de produtos
 	*/
-	Route::group(['middleware' => ['auth'], 'prefix' => 'cadastrar-tipo-produto'], function ($router) {
-		$router->get('/', 'HomeController@index')->name('cadastrar-tipo-produto');
-	});
+	$router->resource('produtos-tipos', 'Painel\ProdutosTiposController');
 
 });

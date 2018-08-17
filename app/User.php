@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    
+    /**
+     * Get dos produtos do usuario
+     */
+    public function produtos()
+    {
+        return $this->hasMany('App\Produtos', 'user_id');
+    }
 }
