@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+		<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -113,6 +114,10 @@
         </div>
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}"></script>
+		<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+		<script src="{{ asset('js/app.js') }}"></script>
+		<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+		
+		@yield('scripts')
     </body>
 </html>
