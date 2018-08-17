@@ -42,7 +42,7 @@
                         <div class="form-group col-md-2">
                             <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Valor</label>
 
-                            <input type="number" required class="form-control form-control-lg"  value="{{$produto->valor}}" placeholder="Valor do produto" name="valor">
+                            <input type="number" min="0" required class="form-control form-control-lg"  value="{{$produto->valor}}" placeholder="Valor do produto" name="valor">
 
                         </div>
                         <div class="form-group col-md-12 text-right">

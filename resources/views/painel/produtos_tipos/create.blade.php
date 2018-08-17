@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Cadastrar Produto</div>
+                <div class="panel-heading">Cadastrar Tipo de Produto</div>
 
                 <div class="panel-body">
                     @if ($errors->any())
@@ -17,7 +17,7 @@
                         </ul>
                     </div>
                     @endif
-                    <form method="post" action="{{url('painel/produtos')}}">
+                    <form method="post" action="{{url('painel/produtos-tipos')}}">
                         {{csrf_field()}}
 
                         <div class="form-group col-md-12">
@@ -27,22 +27,10 @@
 
                         </div>
 
-                        <div class="form-group col-md-10">
-                            <label for="smFormGroupInput" class="col-sm-2 col-form-label col-form-label-sm">Tipo do produto</label>
-
-                            <select required class="form-control form-control-lg" name="produto_tipo_id">
-                                <option value="">Selecione o tipo do produto</option>
-                                @foreach($produtos_tipos as $produto_tipo)
-                                <option value="{{$produto_tipo->id}}">{{$produto_tipo->nome}}</option>
-                                @endforeach
-                            </select>
-
-
-                        </div>
                         <div class="form-group col-md-2">
-                            <label for="lgFormGroupInput" class="col-sm-2 col-form-label col-form-label-lg">Valor</label>
+                            <label for="lgFormGroupInput" class="col-form-label col-form-label-lg">Percentual de imposto</label>
 
-                            <input type="number" min="0" required class="form-control form-control-lg" placeholder="Valor do produto" name="valor">
+                            <input type="number" required class="form-control form-control-lg" max="100" min="0" placeholder="imposto" name="imposto">
 
                         </div>
                         <div class="form-group col-md-12 text-right">

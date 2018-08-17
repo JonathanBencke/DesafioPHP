@@ -16,7 +16,7 @@ class CreateProdutosTipos extends Migration
         Schema::create('produtos_tipos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome', 100)->comment('Nome do tipo de produto');
-            $table->decimal('imposto', 3, 2)->comment('Valor percentual do imposto aplicado no tipo');
+            $table->decimal('imposto', 5, 2)->comment('Valor percentual do imposto aplicado no tipo');
             $table->timestamps();
         });
     }
