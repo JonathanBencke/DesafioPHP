@@ -81,6 +81,7 @@
                 <div class="title m-b-md">
                     {{ config('app.name') }}
                 </div>
+                por Jonathan Andriel Bencke
             </div>
         </div>
     </body>

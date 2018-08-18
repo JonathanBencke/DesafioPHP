@@ -19,7 +19,7 @@ class ProdutosController extends Controller {
      */
     public function index() {
 
-        $produtos = Produtos::all();
+        $produtos = Produtos::where('user_id', Auth::user()->id)->get();
 
         return view('painel.produtos.index', array("produtos" => $produtos));
     }
@@ -29,7 +29,9 @@ class ProdutosController extends Controller {
      * @return view para cadastro de uma novo produto
      */
     public function create() {
-        $produtos_tipos = ProdutosTipos::orderBy('nome')->get();
+        $produtos_tipos = ProdutosTipos::where('user_id', Auth::user()->id)
+                ->orderBy('nome')
+                ->get();
 
         return view('painel.produtos.create', array("produtos_tipos" => $produtos_tipos));
     }
@@ -67,7 +69,10 @@ class ProdutosController extends Controller {
      */
     public function edit($id) {
         $produto = Produtos::find($id);
-        $produtos_tipos = ProdutosTipos::orderBy('nome')->get();
+        
+        $produtos_tipos = ProdutosTipos::where('user_id', Auth::user()->id)
+                ->orderBy('nome')
+                ->get();
 
         return view('painel.produtos.edit', array('produto' => $produto, 'produtos_tipos' => $produtos_tipos));
     }

@@ -12,9 +12,11 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-		<link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
-		
+        <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/bootstrap-select.min.css') }}" rel="stylesheet">
+
+
     </head>
     <body>
         <div id="app">
@@ -50,7 +52,7 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                             @else
                             <li><a href="{{ route('vendas') }}">Vendas</a></li>
-                             <li class="dropdown">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     Produtos <span class="caret"></span>
                                 </a>
@@ -86,7 +88,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -96,7 +98,7 @@
                                     <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
+                                                   document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
 
@@ -116,14 +118,18 @@
         </div>
 
         <!-- Scripts -->
-		<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-		<script src="{{ asset('js/app.js') }}"></script>
-		<script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-		<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-		<script>
-			$(document).ready(function() {
-				$('#datatable').DataTable();
-			});
-		</script>
+        <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+        <script>
+            $(document).ready(function () {
+                $('#datatable').DataTable();
+            });
+        </script>
+        @yield('scripts')
+
+
     </body>
 </html>

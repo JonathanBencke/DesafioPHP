@@ -15,9 +15,12 @@ class CreateProdutosTipos extends Migration
     {
         Schema::create('produtos_tipos', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id')->comment('Usuario que cadastrou o tipo');
             $table->string('nome', 100)->comment('Nome do tipo de produto');
             $table->decimal('imposto', 5, 2)->comment('Valor percentual do imposto aplicado no tipo');
             $table->timestamps();
+            
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

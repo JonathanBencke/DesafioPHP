@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'painel'], function ($router
 	*/
 	$router->group(['prefix' => 'vendas'], function ($router) {
 		$router->get('/', 'Painel\VendasController@index')->name('vendas');
-		$router->get('get-produto-ajax', 'Painel\VendasController@getProdutoByNomeAjax'); //rota de busca de produtos ajax
+		$router->post('/', 'Painel\VendasController@store');
 	});
 	
 	/*

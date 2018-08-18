@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ProdutosTipos;
+use Illuminate\Support\Facades\Auth;
 
 class ProdutosTiposController extends Controller {
 
@@ -17,7 +18,7 @@ class ProdutosTiposController extends Controller {
      */
     public function index() {
 
-        $produtos_tipos = ProdutosTipos::all();
+        $produtos_tipos = ProdutosTipos::where('user_id', Auth::user()->id)->get();
 
         return view('painel.produtos_tipos.index', array("produtos_tipos" => $produtos_tipos));
     }
@@ -48,7 +49,8 @@ class ProdutosTiposController extends Controller {
         //salva tiipo de produto na base
         $produto_tipo = new ProdutosTipos([
             'nome' => $request->get('nome'),
-            'imposto' => $request->get('imposto')
+            'imposto' => $request->get('imposto'),
+            'user_id' => Auth::user()->id
         ]);
 
         $produto_tipo->save();
