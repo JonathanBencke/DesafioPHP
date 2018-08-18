@@ -17,7 +17,8 @@ class ProdutosTiposController extends Controller {
      * @return view com listagem dos produtos tipos
      */
     public function index() {
-
+        
+        
         $produtos_tipos = ProdutosTipos::where('user_id', Auth::user()->id)->get();
 
         return view('painel.produtos_tipos.index', array("produtos_tipos" => $produtos_tipos));
@@ -37,8 +38,6 @@ class ProdutosTiposController extends Controller {
      * @return redirect para index
      */
     public function store(Request $request) {
-
-        
         
         //validação do post
         $this->validate($request, [
@@ -46,13 +45,14 @@ class ProdutosTiposController extends Controller {
             'imposto' => 'required|numeric|min:0'
         ]);
 
+            
         //salva tiipo de produto na base
         $produto_tipo = new ProdutosTipos([
             'nome' => $request->get('nome'),
             'imposto' => $request->get('imposto'),
             'user_id' => Auth::user()->id
         ]);
-
+        
         $produto_tipo->save();
 
         return redirect($this->redirect_to);

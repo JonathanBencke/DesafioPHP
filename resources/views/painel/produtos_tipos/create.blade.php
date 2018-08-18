@@ -30,7 +30,7 @@
                         <div class="form-group col-md-2">
                             <label for="lgFormGroupInput" class="col-form-label col-form-label-lg">Percentual de imposto</label>
 
-                            <input type="number" required class="form-control form-control-lg" max="100" min="0" placeholder="imposto" name="imposto">
+                            <input type="number" step=".01" required class="form-control form-control-lg" max="100" min="0" placeholder="imposto" name="imposto">
 
                         </div>
                         <div class="form-group col-md-12 text-right">

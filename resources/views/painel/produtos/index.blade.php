@@ -9,24 +9,24 @@
 
                 <div class="panel-body">
                     @if(count($produtos)>0)
-		
-					
-					<table id="datatable" class="display" style="width:100%">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>Nome</th>
-								<th>Tipo do Produto</th>
-								<th>Valor</th>
-								<th>Imposto</th>
-								<th>Editar</th>
-								<th>Deletar</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($produtos as $produto)
-							<tr>
-								<td>{{$produto->id}}</td>
+
+
+                    <table id="datatable" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Tipo do Produto</th>
+                                <th>Valor</th>
+                                <th>Imposto</th>
+                                <th>Editar</th>
+                                <th>Deletar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($produtos as $produto)
+                            <tr>
+                                <td>{{$produto->id}}</td>
                                 <td>{{$produto->nome}}</td>
                                 <td>{{$produto->produtoTipo->nome}}</td>
                                 <td>R$ {{$produto->valor}}</td>
@@ -36,26 +36,26 @@
                                     <form action="{{action('Painel\ProdutosController@destroy', $produto->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        <button class="btn btn-danger" type="submit">Remover</button>
                                     </form>
                                 </td>
-							</tr>
-							@endforeach
-						</tbody>
-						<tfoot>
-							<tr>
-								<th>ID</th>
-								<th>Nome</th>
-								<th>Tipo do Produto</th>
-								<th>Valor</th>
-								<th>Imposto</th>
-								<th>Editar</th>
-								<th>Deletar</th>
-							</tr>
-						</tfoot>
-					</table>
-					
-                    
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Tipo do Produto</th>
+                                <th>Valor</th>
+                                <th>Imposto</th>
+                                <th>Editar</th>
+                                <th>Deletar</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+
                     @else
                     Nenhum produto cadastrado!
                     @endif

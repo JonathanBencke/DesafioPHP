@@ -8,7 +8,7 @@ class ProdutosTipos extends Model
 {
    
     protected $table = 'produtos_tipos';
-    protected $fillable = ['nome', 'imposto'];
+    protected $fillable = ['nome', 'imposto', 'user_id'];
     protected $primaryKey = "id";
     
     /**

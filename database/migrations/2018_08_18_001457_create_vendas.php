@@ -17,8 +17,7 @@ class CreateVendas extends Migration
             $table->increments('id');
             $table->unsignedInteger('produto_id')->comment('Produto');
             $table->unsignedInteger('user_id')->comment('Usuario que cadastrou a venda');
-            $table->string('qtd', 100)->comment('Quantidade do produto');
-            $table->decimal('valor_liquido', 8, 2)->comment('Valor do produto sem imposto');
+            $table->integer('qtd')->comment('Quantidade do produto');
             $table->timestamps();
             
             $table->foreign('produto_id')->references('id')->on('produtos');

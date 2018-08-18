@@ -30,7 +30,7 @@
                                     <form action="{{action('Painel\ProdutosTiposController@destroy', $produto_tipo->id)}}" method="post">
                                         {{csrf_field()}}
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                        <button class="btn btn-danger" type="submit">Remover</button>
                                     </form>
                                 </td>
                             </tr>
