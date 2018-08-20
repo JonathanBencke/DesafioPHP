@@ -22,7 +22,7 @@ class VendasController extends Controller {
 
         //total do custo da venda
         $total = 0;
-        $total_liquido = 0;
+        $total_impostos = 0;
 
         //produtos para a listagem de vendas
         $produtos = Produtos::where('user_id', Auth::user()->id)
@@ -40,18 +40,18 @@ class VendasController extends Controller {
 
             //valor final valor x quantidade
             $valor_x_qtd = $venda->produto->valor * $venda->qtd;
-            $valor_x_qtd_liquido = $cal_valor_perc * $venda->qtd;
+            $valor_em_imposto = $valor_x_qtd-($cal_valor_perc * $venda->qtd);//valor em impostos do produto
 
             $venda->valor = number_format($valor_x_qtd, 2); //valor do produto
-            $venda->valor_liquido = number_format($valor_x_qtd_liquido, 2); //valor liquido do produto
+            $venda->valor_impostos = number_format($valor_em_imposto, 2); //valor total em impostos
             $total += $valor_x_qtd; //soma dos produtos com imposto
-            $total_liquido += $valor_x_qtd_liquido; //soma dos produtos sem imposto
+            $total_impostos += $valor_em_imposto; //soma dos impostos sobre os produtos comprados
         }
 
         $paramentros = array(
             "vendas" => $vendas,
             "total" => number_format($total, 2),
-            "total_liquido" => number_format($total_liquido, 2),
+            "total_impostos" => number_format($total_impostos, 2),
             'produtos' => $produtos
         );
 

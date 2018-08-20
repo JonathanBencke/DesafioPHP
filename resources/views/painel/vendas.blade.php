@@ -45,8 +45,8 @@
                                     <th>Produto</th>
                                     <th>Quantidade</th>
                                     <th>Valor(un)</th>
-                                    <th>Valor</th>
-                                    <th>Valor Sem Imposto</th>
+                                    <th>Total</th>
+                                    <th>Total em impostos</th>
                                     <th>Remover</th>
                                 </tr>
                             </thead>
@@ -56,8 +56,8 @@
                                     <td>{{$venda->produto->nome}} - {{$venda->produto->produtoTipo->nome}}</td>
                                     <td>{{$venda->qtd}}un</td>
                                     <td>R$ {{$venda->produto->valor}}</td>
-                                    <td class="text-danger">R$ {{$venda->valor}}</td>
-                                    <td class="text-success">R$ {{$venda->valor_liquido}}</td>
+                                    <td class="text-success">R$ {{$venda->valor}}</td>
+                                    <td class="text-danger">R$ {{$venda->valor_impostos}}</td>
                                     <td> 
                                     <form action="{{action('Painel\VendasController@destroy', $venda->id)}}" method="post">
                                         {{csrf_field()}}
@@ -71,8 +71,8 @@
                         </table>
                         <hr style="margin-top: 100px">
                         <div class="text-right">
-                            <h4 class="text-danger">Total R$ {{$total}}</h4>
-                            <h3 class="text-success">Total sem imposto R$ {{$total_liquido}}</h3>
+                            <h4 class="text-success">Total da compra R$ {{$total}}</h4>
+                            <h3 class="text-danger">Total em impostos R$ {{$total_impostos}}</h3>
                         </div>
                         
                         @else
