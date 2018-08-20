@@ -35,7 +35,7 @@ class VendasController extends Controller {
         //calcula valor liquido do produto
         foreach ($vendas as $venda) {
 
-            //calcula para saber o valor do produto sem imposto
+            //calculo para saber o valor do produto sem imposto
             $cal_valor_perc = $venda->produto->valor - (($venda->produto->valor / 100) * $venda->produto->produtoTipo->imposto);
 
             //valor final valor x quantidade
